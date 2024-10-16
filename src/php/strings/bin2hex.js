@@ -1,4 +1,4 @@
-module.exports = function bin2hex (s) {
+module.exports = function bin2hex(s) {
   //  discuss at: https://locutus.io/php/bin2hex/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -8,19 +8,14 @@ module.exports = function bin2hex (s) {
   //   returns 1: '4b6576'
   //   example 2: bin2hex(String.fromCharCode(0x00))
   //   returns 2: '00'
+  //   example 3: bin2hex("æ")
+  //   returns 3: 'c3a6'
 
-  let i
-  let l
-  let o = ''
-  let n
-
-  s += ''
-
-  for (i = 0, l = s.length; i < l; i++) {
-    n = s.charCodeAt(i)
-      .toString(16)
-    o += n.length < 2 ? '0' + n : n
+  const encoder = new TextEncoder()
+  const bytes = encoder.encode(s)
+  let hex = ''
+  for (const byte of bytes) {
+    hex += byte.toString(16).padStart(2, '0')
   }
-
-  return o
+  return hex
 }

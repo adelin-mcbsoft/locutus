@@ -1,3 +1,7 @@
-test/languages
+dist/
 node_modules
-website/public
+test/generated/
+website/public/
+website/themes/icarus/_source/
+website/themes/icarus/scripts/
+website/themes/icarus/source/
